@@ -146,10 +146,29 @@ export default function Footer({ setActivePage }) {
           </div>
         </div>
 
+        {/* SEO Keywords Strip for Mumbai & Pan-India Search Engines */}
+        <div style={{
+          marginTop: '2.5rem',
+          paddingTop: '1.5rem',
+          borderTop: '1px solid var(--border-dark)',
+          fontSize: '0.78rem',
+          color: 'var(--text-dim)',
+          lineHeight: '1.7'
+        }}>
+          <div style={{ marginBottom: '0.5rem' }}>
+            <strong style={{ color: 'var(--text-cream)' }}>Mumbai & MMR Service Hubs: </strong>
+            <span>Andheri East/West • Bandra Kurla Complex (BKC) • Dadar • Borivali • Powai • Ghatkopar • Vashi APMC Terminal • Nerul • Belapur • Mahape MIDC • Taloja • JNPT Nhava Sheva Port • Thane Wagle Estate • Bhiwandi Warehousing Hub • Panvel • Kalyan • Dombivli</span>
+          </div>
+          <div>
+            <strong style={{ color: 'var(--text-cream)' }}>National Freight Corridors from Mumbai: </strong>
+            <span>Mumbai to Pune Express FTL • Mumbai to Surat/Ahmedabad • Mumbai to Bangalore • Mumbai to Hyderabad • Mumbai to Delhi NCR • Mumbai to Nashik/Dhule • Mumbai to Goa • Tata Ace on rent Mumbai • Packers and movers Mumbai</span>
+          </div>
+        </div>
+
         {/* Bottom Strip */}
         <div className="footer-bottom">
           <div>
-            © {new Date().getFullYear()} {BUSINESS_CONFIG.brandName}. All rights reserved. Direct Fleet Logistics.
+            © {new Date().getFullYear()} {BUSINESS_CONFIG.brandName}. All rights reserved. Direct Fleet Logistics Mumbai & India.
           </div>
           <div style={{ display: 'flex', gap: '1.25rem' }}>
             <span>Privacy Policy</span>

@@ -183,10 +183,12 @@ export const LOAD_TYPES = [
 
 // Popular route distances for instant calculation demo
 export const POPULAR_ROUTES = [
-  { from: "Pune (Wakad / Hinjawadi)", to: "Pune (Kharadi / Hadapsar)", distanceKm: 28, estDuration: "1 hr 15 mins" },
-  { from: "Pune (Transport Nagar)", to: "Navi Mumbai (Vashi / APMC)", distanceKm: 135, estDuration: "3 hrs 30 mins" },
-  { from: "Pune", to: "Nashik (Ambad MIDC)", distanceKm: 215, estDuration: "5 hrs 30 mins" },
-  { from: "Pune", to: "Kolhapur (Shiroli MIDC)", distanceKm: 235, estDuration: "5 hrs 45 mins" },
-  { from: "Mumbai", to: "Surat (Industrial Estate)", distanceKm: 285, estDuration: "6 hrs 30 mins" },
-  { from: "Pune", to: "Bangalore (Peenya Hub)", distanceKm: 840, estDuration: "18 - 20 hrs" }
+  { from: "Andheri / Bandra (Mumbai)", to: "Navi Mumbai (Vashi / APMC)", distanceKm: 32, estDuration: "1 hr 10 mins" },
+  { from: "Thane (Wagle Estate)", to: "Bhiwandi (Logistics Park)", distanceKm: 18, estDuration: "45 mins" },
+  { from: "Mumbai (Dadar / BKC)", to: "Pune (Hinjawadi / Wakad)", distanceKm: 145, estDuration: "3 hrs 30 mins" },
+  { from: "Navi Mumbai (Vashi)", to: "JNPT Nhava Sheva Port", distanceKm: 28, estDuration: "50 mins" },
+  { from: "Mumbai (Bhiwandi Hub)", to: "Surat / Vapi (Industrial GIDC)", distanceKm: 240, estDuration: "5 hrs 15 mins" },
+  { from: "Mumbai / Thane", to: "Nashik (Ambad MIDC)", distanceKm: 165, estDuration: "4 hrs 15 mins" },
+  { from: "Mumbai / Pune", to: "Bangalore (Peenya / Electronic City)", distanceKm: 980, estDuration: "20 - 22 hrs" },
+  { from: "Mumbai (Bhiwandi)", to: "Delhi NCR (Gurugram / Noida)", distanceKm: 1420, estDuration: "30 - 34 hrs" }
 ];

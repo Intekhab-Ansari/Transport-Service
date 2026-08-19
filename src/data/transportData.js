@@ -21,18 +21,43 @@ export const BUSINESS_CONFIG = {
   emailBooking: "dispatch@vanguardlogistics.in", // [REPLACE: Business email]
   emailSupport: "support@vanguardlogistics.in",
   
-  // Physical Locations
-  headOfficeAddress: "Plot No. 42, Transport Nagar, Phase-2, Near Highway Bypass, Pune, Maharashtra - 411044", // [REPLACE: Main Office Address]
-  parkingYardAddress: "Yard #7, Heavy Vehicle Terminal, Old Mumbai-Pune Highway, Nigdi, Pune - 411033", // [REPLACE: Fleet Yard Address]
+  // Physical Locations & Operational Hubs
+  headOfficeAddress: "Plot No. 42, Transport Nagar, Phase-2, Near Highway Bypass, Pune, Maharashtra - 411044",
+  mumbaiMainHub: "Gala 14, APMC Truck Terminal, Sector 19, Vashi, Navi Mumbai - 400705",
+  bhiwandiHub: "Building B-4, Mankoli Logistics Park, Mumbai-Nashik Highway, Bhiwandi, Thane - 421302",
+  parkingYardAddress: "Yard #7, Heavy Vehicle Terminal, Old Mumbai-Pune Highway, Nigdi, Pune - 411033",
   branchOffices: [
-    { city: "Mumbai / Navi Mumbai", address: "Gala 14, APMC Truck Terminal, Vashi, Navi Mumbai - 400705", phone: "+91 98765 43212" },
-    { city: "Nashik", address: "Shop 4, Ambad MIDC Transport Hub, Nashik - 422010", phone: "+91 98765 43213" },
-    { city: "Kolhapur / Sangli", address: "G-12, Shiroli MIDC Ring Road, Kolhapur - 416122", phone: "+91 98765 43214" }
+    { city: "Mumbai / Navi Mumbai Hub", address: "Gala 14, APMC Truck Terminal, Sector 19, Vashi, Navi Mumbai - 400705", phone: "+91 98765 43210" },
+    { city: "Thane & Bhiwandi Logistics Hub", address: "Building B-4, Mankoli Logistics Park, Bhiwandi, Thane - 421302", phone: "+91 98765 43212" },
+    { city: "Andheri / Western Suburbs Desk", address: "Unit 8, MIDC Central Road, Andheri East, Mumbai - 400093", phone: "+91 98765 43211" },
+    { city: "Pune Head Office & Central Yard", address: "Plot No. 42, Transport Nagar, Nigdi, Pune - 411044", phone: "+91 98765 43210" },
+    { city: "Nashik Branch", address: "Shop 4, Ambad MIDC Transport Hub, Nashik - 422010", phone: "+91 98765 43213" },
+    { city: "Gujarat Corridor Desk", address: "Plot 18, GIDC Industrial Estate, Vapi / Surat - 396195", phone: "+91 98765 43214" }
+  ],
+
+  // Mumbai & Maharashtra Local Service Coverage Areas
+  mumbaiServiceZones: [
+    {
+      region: "Mumbai Western Suburbs",
+      areas: ["Andheri (East/West)", "Bandra & BKC", "Borivali", "Goregaon", "Malad", "Kandivali", "Jogeshwari", "Santacruz", "Vile Parle", "Dahisar"]
+    },
+    {
+      region: "Mumbai Central & South Mumbai",
+      areas: ["Dadar", "Kurla", "Ghatkopar", "Powai & Kanjurmarg", "Mulund", "Bhandup", "Chembur", "Sion", "Lower Parel", "Fort / Colaba"]
+    },
+    {
+      region: "Navi Mumbai & Port Zones",
+      areas: ["Vashi (APMC)", "Nerul", "Belapur (CBD)", "Kopar Khairane", "Mahape (Millennium City)", "Taloja MIDC", "Panvel", "JNPT Nhava Sheva Port", "Airoli", "Ghansoli"]
+    },
+    {
+      region: "Thane & Bhiwandi Logistics Corridor",
+      areas: ["Thane West (Ghodbunder)", "Wagle Estate MIDC", "Bhiwandi Warehousing Hub", "Kalyan", "Dombivli", "Mira-Bhayandar", "Vasai-Virar"]
+    }
   ],
   
   // Working Hours
-  operatingHours: "24 Hours / 7 Days a Week (Round-the-clock Dispatch)",
-  officeTimings: "Monday to Sunday: 7:00 AM – 11:00 PM",
+  operatingHours: "24 Hours / 7 Days a Week (Round-the-clock Dispatch across Mumbai & India)",
+  officeTimings: "Monday to Sunday: 7:00 AM – 11:00 PM (Emergency Dispatch 24/7)",
   
   // Key Differentiators / USPs
   usps: [
@@ -40,13 +65,13 @@ export const BUSINESS_CONFIG = {
       id: "own-fleet",
       title: "100% In-House Fleet",
       badge: "No Brokers",
-      desc: "We own our vehicles and employ verified full-time drivers. You deal directly with the fleet owner, saving 15-25% in agent commissions."
+      desc: "We own our vehicles and employ verified full-time drivers across Mumbai and Pune. You deal directly with the fleet owner, saving 15-25% in agent commissions."
     },
     {
       id: "transparent-fare",
       title: "Fixed Upfront Fares",
       badge: "No Hidden Costs",
-      desc: "What we quote is what you pay. Zero surprise charges for tolls, night-travel surcharges, or arbitrary loading delays."
+      desc: "What we quote is what you pay. Zero surprise charges for Mumbai toll plazas, night-travel surcharges, or arbitrary loading delays."
     },
     {
       id: "live-tracking",
@@ -64,33 +89,34 @@ export const BUSINESS_CONFIG = {
       id: "on-time",
       title: "99.4% On-Time Commitment",
       badge: "Strict Schedule",
-      desc: "Our vehicles undergo mandatory weekly maintenance checks at our own garage to ensure zero en-route breakdown delays."
+      desc: "Our vehicles undergo mandatory weekly maintenance checks at our own garage to ensure zero en-route breakdown delays on Expressways."
     },
     {
       id: "experienced-crew",
       title: "Trained Loading Labor (Hamal)",
       badge: "Careful Handling",
-      desc: "Optional skilled manpower for heavy machinery, fragile furniture, and pallet loading with safety blankets and straps."
+      desc: "Optional skilled manpower for heavy machinery, fragile household furniture, and pallet loading with safety blankets and straps."
     }
   ],
   
   // Trust Stats
   stats: [
-    { value: "18+", label: "Years on the Road", sub: "Since 2008" },
-    { value: "65+", label: "Owned Commercial Trucks", sub: "Tata Ace to 32ft" },
-    { value: "42,800+", label: "Successful Deliveries", sub: "Zero lost cargo" },
+    { value: "18+", label: "Years on the Road", sub: "Serving India Since 2008" },
+    { value: "65+", label: "Owned Commercial Trucks", sub: "Tata Ace to 32ft MX" },
+    { value: "42,800+", label: "Successful Deliveries", sub: "Mumbai & Pan-India" },
     { value: "99.4%", label: "On-Time Dispatch Rate", sub: "Live GPS tracked" },
-    { value: "150+", label: "Regular Route Corridors", sub: "City & Intercity" }
+    { value: "150+", label: "Regular Route Corridors", sub: "Intra-City & National FTL" }
   ],
 
-  // Active City Corridors
+  // Active City & Highway Corridors across India
   corridors: [
-    { from: "Pune", to: "Mumbai / JNPT Port", time: "3 - 5 Hours", frequency: "Hourly Runs" },
-    { from: "Pune", to: "Nashik / Dhule", time: "5 - 7 Hours", frequency: "Daily 4 Trips" },
-    { from: "Pune", to: "Kolhapur / Belgaum", time: "6 - 8 Hours", frequency: "Daily 3 Trips" },
-    { from: "Mumbai", to: "Surat / Ahmedabad", time: "8 - 12 Hours", frequency: "Daily 6 Trips" },
-    { from: "Pune / Mumbai", to: "Bangalore / Hyderabad", time: "18 - 24 Hours", frequency: "Daily Express FTL" },
-    { from: "Local Intra-City", to: "Within 50 km Radius", time: "Under 45 Mins Arrival", frequency: "On-Demand 24/7" }
+    { from: "Mumbai / Navi Mumbai", to: "Pune (Expressway Direct)", time: "3 - 4.5 Hours", frequency: "Hourly Runs 24/7" },
+    { from: "Mumbai (Bhiwandi / Vashi)", to: "Gujarat (Vapi / Surat / Ahmedabad)", time: "6 - 10 Hours", frequency: "Daily 6 Trips" },
+    { from: "Mumbai / JNPT Port", to: "Nashik / Dhule / Jalgaon", time: "5 - 7 Hours", frequency: "Daily 4 Trips" },
+    { from: "Mumbai / Pune", to: "Bangalore / Karnataka Hubs", time: "18 - 22 Hours", frequency: "Daily Express FTL" },
+    { from: "Mumbai", to: "Hyderabad / Telangana", time: "14 - 18 Hours", frequency: "Daily FTL Service" },
+    { from: "Mumbai / Bhiwandi", to: "Delhi NCR (Express Highway)", time: "28 - 36 Hours", frequency: "Dedicated Container FTL" },
+    { from: "Local Mumbai Intra-City", to: "Any Location in MMR", time: "Under 40 Mins Arrival", frequency: "On-Demand 24/7" }
   ],
 
   // Core Services
@@ -218,24 +244,32 @@ export const BUSINESS_CONFIG = {
   // FAQs
   faqs: [
     {
-      q: "How quickly can a tempo (Tata Ace / Bolero) reach my pickup location?",
-      a: "For local intra-city bookings within city limits, our nearest tempo usually arrives within 30 to 45 minutes of booking confirmation. For scheduled shifts, you can book in advance to lock your preferred morning slot."
+      q: "How quickly can a tempo (Tata Ace / Bolero) reach my location in Mumbai, Navi Mumbai, or Thane?",
+      a: "For local intra-city bookings across Mumbai, Navi Mumbai, Thane, and Bhiwandi, our nearest company-owned tempo arrives within 30 to 45 minutes of booking confirmation. For scheduled household shifting, you can book in advance to lock your preferred morning slot."
     },
     {
-      q: "Are toll taxes, parking fees, and GST included in the quote?",
-      a: "Our quote gives an itemized breakdown. Local intra-city fares include fuel, driver, and vehicle. For intercity trips, highway toll taxes and state border permits are billed transparently at actuals as per government Fastag receipts."
+      q: "How do you handle Mumbai Traffic Police No-Entry timings for commercial trucks?",
+      a: "Our fleet consists of small commercial vehicles (Tata Ace / Bolero) that operate freely across Mumbai daytime delivery zones, while heavy trucks (14ft, 19ft, and 32ft) are scheduled during approved highway and night transit corridors to ensure smooth non-stop transit."
     },
     {
-      q: "Do you provide helpers/labor for loading and unloading?",
-      a: "Yes! You can choose 1, 2, or 4 experienced helpers during booking. Our team handles heavy lifting, furniture safety wrapping, and careful placement at the destination."
+      q: "Are toll taxes (Mumbai Entry, Sea Link, Expressway) and GST included in the quote?",
+      a: "Our quote gives an itemized breakdown. Local intra-city fares include fuel, driver, and vehicle. For intercity trips, highway toll taxes (like Mumbai-Pune Expressway, Eastern Freeway, Bandra-Worli Sea Link) and state border permits are billed transparently at actual Fastag receipt costs."
     },
     {
-      q: "Are my goods insured during transit?",
-      a: "All our vehicles are insured with mandatory carrier liability. For high-value machinery, industrial equipment, or household luxury items, we provide on-demand comprehensive transit insurance covering up to ₹50 Lakhs against accident or fire."
+      q: "Do you offer Bhiwandi Warehousing and JNPT Port Container transport?",
+      a: "Yes! We specialize in warehouse replenishment from Bhiwandi logistics hubs to retail stores in Mumbai/Pune, as well as JNPT Nhava Sheva container freight station (CFS) container movement with 20ft and 32ft multi-axle trucks."
     },
     {
-      q: "How is dealing with you different from app-based logistics aggregators?",
-      a: "We are direct fleet owners with physical yards and 65+ vehicles. Aggregator apps take 20% commission and outsource your trip to unknown third-party drivers who frequently cancel. With us, you get guaranteed vehicle dispatch, fixed pricing, and direct 24/7 phone access to our dispatch manager."
+      q: "Do you provide helpers/labor (Hamal) for loading and unloading in Mumbai high-rises?",
+      a: "Yes! You can choose 1, 2, or 4 experienced helpers during booking. Our crew is trained in high-rise service lift handling, heavy lifting, furniture safety wrapping, and careful placement at the destination."
+    },
+    {
+      q: "Are my goods insured during transit across Maharashtra and All-India?",
+      a: "All our vehicles are insured with mandatory carrier liability. For high-value industrial machinery, electronics, or luxury household items, we provide on-demand comprehensive transit insurance covering up to ₹50 Lakhs against accident, damage, or fire."
+    },
+    {
+      q: "How is dealing with Vanguard different from app-based logistics aggregators like Porter or brokers?",
+      a: "We are direct fleet owners with physical yards in Navi Mumbai, Bhiwandi, and Pune with 65+ company-owned vehicles. Aggregators charge high commissions and outsource trips to unknown third-party drivers who often cancel. With Vanguard, you get guaranteed vehicle dispatch, fixed pricing, and direct 24/7 phone access to our dispatch control room."
     }
   ]
 };

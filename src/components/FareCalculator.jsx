@@ -19,9 +19,9 @@ import confetti from 'canvas-confetti';
 export default function FareCalculator({ defaultVehicleId = 'bolero-pickup', variant = 'full', onQuoteCalculated }) {
   // Calculator State
   const [selectedVehicleId, setSelectedVehicleId] = useState(defaultVehicleId);
-  const [pickupCity, setPickupCity] = useState('Pune');
-  const [dropCity, setDropCity] = useState('Navi Mumbai');
-  const [distanceKm, setDistanceKm] = useState(135);
+  const [pickupCity, setPickupCity] = useState('Mumbai (Andheri / BKC)');
+  const [dropCity, setDropCity] = useState('Navi Mumbai (Vashi APMC)');
+  const [distanceKm, setDistanceKm] = useState(32);
   const [selectedLoadType, setSelectedLoadType] = useState('house-1bhk');
   const [helpersCount, setHelpersCount] = useState(2);
   const [includeInsurance, setIncludeInsurance] = useState(true);
@@ -101,12 +101,32 @@ Please confirm driver availability.`;
   if (variant === 'compact-bar') {
     return (
       <div className="hero-fare-bar">
+        <datalist id="mumbai-india-locations">
+          <option value="Mumbai (Andheri East / West)" />
+          <option value="Mumbai (Bandra / BKC)" />
+          <option value="Mumbai (Dadar / South Mumbai)" />
+          <option value="Mumbai (Borivali / Kandivali / Malad)" />
+          <option value="Mumbai (Powai / Ghatkopar / Kurla)" />
+          <option value="Navi Mumbai (Vashi APMC Market)" />
+          <option value="Navi Mumbai (Mahape / Taloja MIDC)" />
+          <option value="JNPT Port (Nhava Sheva)" />
+          <option value="Thane (Wagle Estate / Ghodbunder)" />
+          <option value="Bhiwandi (Logistics & Warehouse Hub)" />
+          <option value="Pune (Transport Nagar / Hinjawadi)" />
+          <option value="Nashik (Ambad MIDC)" />
+          <option value="Gujarat (Surat / Vapi / Ahmedabad)" />
+          <option value="Bangalore (Peenya / Whitefield)" />
+          <option value="Hyderabad (HITEC / Medchal)" />
+          <option value="Delhi NCR (Gurugram / Noida)" />
+        </datalist>
+
         <div className="fare-bar-field">
-          <label className="fare-bar-label">Pickup Location</label>
+          <label className="fare-bar-label">Pickup Location (Mumbai / India)</label>
           <input
             type="text"
+            list="mumbai-india-locations"
             className="fare-bar-input"
-            placeholder="e.g. Pune (Kothrud / Bhosari)"
+            placeholder="e.g. Andheri East / BKC / Vashi"
             value={pickupCity}
             onChange={(e) => setPickupCity(e.target.value)}
           />
@@ -116,8 +136,9 @@ Please confirm driver availability.`;
           <label className="fare-bar-label">Drop Location</label>
           <input
             type="text"
+            list="mumbai-india-locations"
             className="fare-bar-input"
-            placeholder="e.g. Navi Mumbai / Nashik"
+            placeholder="e.g. Vashi / Pune / Bhiwandi / Surat"
             value={dropCity}
             onChange={(e) => setDropCity(e.target.value)}
           />
@@ -319,21 +340,23 @@ Please confirm driver availability.`;
         {/* Step 2: Pickup & Drop */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginBottom: '0.75rem' }}>
           <div className="form-group" style={{ marginBottom: 0 }}>
-            <label className="form-label">Pickup Location</label>
+            <label className="form-label">Pickup Location (Mumbai / India)</label>
             <input
               type="text"
+              list="mumbai-india-locations"
               className="form-control"
-              placeholder="e.g. Pune (Kothrud / Bhosari)"
+              placeholder="e.g. Andheri East / BKC / Vashi"
               value={pickupCity}
               onChange={(e) => setPickupCity(e.target.value)}
             />
           </div>
           <div className="form-group" style={{ marginBottom: 0 }}>
-            <label className="form-label">Drop Location</label>
+            <label className="form-label">Drop Location (City / Suburb)</label>
             <input
               type="text"
+              list="mumbai-india-locations"
               className="form-control"
-              placeholder="e.g. Navi Mumbai / Nashik"
+              placeholder="e.g. Vashi / Pune / Bhiwandi / Surat"
               value={dropCity}
               onChange={(e) => setDropCity(e.target.value)}
             />

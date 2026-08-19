@@ -50,21 +50,22 @@ export default function HomePage({ setActivePage, setSelectedFleetId }) {
           <div className="hero-photo-content">
             <div className="hero-pill-badge">
               <Truck size={14} />
-              <span>DIRECT FLEET OWNERS • NO BROKERAGE</span>
+              <span>DIRECT FLEET OWNERS • MUMBAI, MMR & ALL INDIA TRANSPORT</span>
             </div>
 
             <h1 className="hero-headline-compact">
-              RELIABLE TEMPO & TRUCK TRANSPORT. <span className="highlight-orange">ON TIME, EVERY TRIP.</span>
+              MUMBAI & ALL INDIA TEMPO & TRUCK TRANSPORT. <span className="highlight-orange">ON TIME, EVERY TRIP.</span>
             </h1>
 
             <p className="hero-subline-compact">
-              Company-owned fleet of 65+ commercial tempos (Tata Ace, Bolero) and heavy trucks (14ft to 32ft) for local shifting, warehouse logistics, and intercity freight.
+              Company-owned fleet of 65+ commercial tempos (Tata Ace, Bolero Pickup) and heavy trucks (14ft, 19ft, 32ft FTL) for house shifting, Bhiwandi warehousing, JNPT port freight, and intercity logistics.
             </p>
 
             <div className="hero-photo-ctas">
               <a
                 href={`tel:${BUSINESS_CONFIG.phonePrimary.replace(/\s+/g, '')}`}
                 className="btn btn-primary"
+                aria-label="Call Vanguard Logistics Mumbai Dispatch"
               >
                 <Phone size={17} />
                 <span>Call Dispatch: {BUSINESS_CONFIG.phonePrimary}</span>
@@ -75,6 +76,7 @@ export default function HomePage({ setActivePage, setSelectedFleetId }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-whatsapp"
+                aria-label="Get instant WhatsApp freight quote in Mumbai"
               >
                 <MessageCircle size={17} />
                 <span>WhatsApp Quote</span>
@@ -311,6 +313,59 @@ export default function HomePage({ setActivePage, setSelectedFleetId }) {
                 <div className="corridor-meta-light">
                   <span>Avg: <strong>{c.time}</strong></span>
                   <span className="corridor-freq">{c.frequency}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Mumbai & MMR Local Service Hubs SEO Section */}
+          <div className="section-header" style={{ marginTop: '3.5rem' }}>
+            <span className="section-tag-light">MUMBAI & MMR LOCAL COVERAGE</span>
+            <h2 className="section-title-light">LOCAL TEMPO & TRUCK HUBS IN MUMBAI</h2>
+            <p className="section-subtitle-light">
+              We operate dedicated parking yards and verified tempo dispatch desks across all major commercial & residential zones in Mumbai Metropolitan Region (MMR).
+            </p>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '1.25rem',
+            marginBottom: '3.5rem'
+          }}>
+            {BUSINESS_CONFIG.mumbaiServiceZones && BUSINESS_CONFIG.mumbaiServiceZones.map((zone, idx) => (
+              <div key={idx} style={{
+                background: '#ffffff',
+                border: '1px solid #e2e8f0',
+                borderRadius: '8px',
+                padding: '1.25rem',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  fontSize: '1rem',
+                  fontWeight: '700',
+                  color: 'var(--bg-steel-black)',
+                  marginBottom: '0.85rem'
+                }}>
+                  <MapPin size={18} color="var(--accent-orange)" />
+                  <span>{zone.region}</span>
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
+                  {zone.areas.map((area, i) => (
+                    <span key={i} style={{
+                      fontSize: '0.75rem',
+                      background: '#f1f5f9',
+                      color: '#334155',
+                      padding: '0.2rem 0.5rem',
+                      borderRadius: '4px',
+                      fontWeight: '500'
+                    }}>
+                      {area}
+                    </span>
+                  ))}
                 </div>
               </div>
             ))}
