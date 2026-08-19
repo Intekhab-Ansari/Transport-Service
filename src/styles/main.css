@@ -1,0 +1,438 @@
+/* ==========================================================================
+   VANGUARD ROADWAYS & LOGISTICS — CORE DESIGN SYSTEM
+   "Human-Made, Industrial, High-Trust Aesthetics"
+   ========================================================================== */
+
+:root {
+  /* Brand Industrial Color Palette */
+  --bg-asphalt-dark: #0b0f16;
+  --bg-asphalt: #121722;
+  --bg-steel: #1a2230;
+  --bg-card: #202b3c;
+  --bg-card-hover: #263347;
+  --bg-light: #f8fafc;
+  --bg-light-surface: #ffffff;
+  --bg-light-muted: #f1f5f9;
+  
+  /* High-Visibility Accents */
+  --accent-orange: #f95700;
+  --accent-orange-hover: #e04e00;
+  --accent-orange-subtle: rgba(249, 87, 0, 0.12);
+  --accent-yellow: #ffb703;
+  --accent-yellow-dark: #d97706;
+  --accent-green: #22c55e;
+  --accent-green-subtle: rgba(34, 197, 94, 0.15);
+  
+  /* Text & Surfaces */
+  --text-white: #ffffff;
+  --text-cream: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --text-dark: #0f172a;
+  --text-dark-muted: #475569;
+  
+  /* Borders & Dividers */
+  --border-dark: #26344a;
+  --border-light: #e2e8f0;
+  --border-focus: #f95700;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.15);
+  --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-light-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-orange: 0 4px 16px rgba(249, 87, 0, 0.35);
+  
+  /* Typography */
+  --font-heading: 'Oswald', -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  
+  /* Spacing */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --max-width: 1240px;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-asphalt-dark);
+  color: var(--text-cream);
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+/* Typography Defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-white);
+  line-height: 1.15;
+}
+
+p {
+  color: var(--text-muted);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Layout Utilities — Tight Density (35-40% reduced padding) */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.section-py {
+  padding: 2.85rem 0;
+}
+
+.section-py-sm {
+  padding: 1.85rem 0;
+}
+
+/* Alternating Section Backgrounds */
+.section-dark {
+  background-color: var(--bg-asphalt-dark);
+  border-top: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.section-asphalt {
+  background-color: var(--bg-asphalt);
+  border-top: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.section-light {
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+/* Section Headers: Dark Theme */
+.section-header {
+  margin-bottom: 2rem;
+}
+
+.section-header.text-center {
+  text-align: center;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--accent-orange);
+  background-color: var(--accent-orange-subtle);
+  border-left: 3px solid var(--accent-orange);
+  padding: 0.25rem 0.75rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 660px;
+}
+
+.section-header.text-center .section-subtitle {
+  margin: 0 auto;
+}
+
+/* Section Headers: Light Theme */
+.section-tag-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--accent-orange);
+  background-color: rgba(249, 87, 0, 0.08);
+  border-left: 3px solid var(--accent-orange);
+  padding: 0.25rem 0.75rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin-bottom: 0.5rem;
+}
+
+.section-title-light {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3.2vw, 2.35rem);
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+
+.section-subtitle-light {
+  font-size: 0.95rem;
+  color: var(--text-dark-muted);
+  max-width: 660px;
+}
+
+.section-header.text-center .section-subtitle-light {
+  margin: 0 auto;
+}
+
+/* Standard Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.35rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--accent-orange);
+  color: var(--text-white);
+  box-shadow: var(--shadow-orange);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-orange-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: var(--bg-steel);
+  color: var(--text-white);
+  border: 1px solid var(--border-dark);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--accent-orange);
+}
+
+.btn-whatsapp {
+  background-color: #25D366;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.btn-whatsapp:hover {
+  background-color: #1eb956;
+  transform: translateY(-1px);
+}
+
+.btn-sm {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.825rem;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.725rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+}
+
+.badge-orange {
+  background-color: var(--accent-orange-subtle);
+  color: var(--accent-orange);
+  border: 1px solid rgba(249, 87, 0, 0.3);
+}
+
+.badge-yellow {
+  background-color: rgba(255, 183, 3, 0.15);
+  color: var(--accent-yellow);
+  border: 1px solid rgba(255, 183, 3, 0.3);
+}
+
+.badge-green {
+  background-color: var(--accent-green-subtle);
+  color: var(--accent-green);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+/* Light Section Cards */
+.services-light-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.card-light {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-light-card);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-light:hover {
+  border-color: var(--accent-orange);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.card-light-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.service-icon-box {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(249, 87, 0, 0.1);
+  color: var(--accent-orange);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-light-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-orange);
+  background-color: rgba(249, 87, 0, 0.08);
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.card-light-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  color: var(--text-dark);
+  margin-bottom: 0.3rem;
+}
+
+.card-light-tagline {
+  font-size: 0.85rem;
+  color: var(--accent-orange);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.card-light-ideal {
+  font-size: 0.825rem;
+  color: var(--text-dark-muted);
+  background-color: #f8fafc;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+  border-left: 2px solid #cbd5e1;
+}
+
+.card-light-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.card-light-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  font-size: 0.825rem;
+  color: #334155;
+}
+
+.card-light-footer {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-light-price {
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.card-light-btn {
+  background: none;
+  color: var(--accent-orange);
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Custom placeholder badge */
+.replace-tag {
+  font-family: monospace;
+  font-size: 0.725rem;
+  background-color: rgba(255, 183, 3, 0.15);
+  color: var(--accent-yellow);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  border: 1px dashed rgba(255, 183, 3, 0.4);
+}
+
+@media (max-width: 768px) {
+  .section-py {
+    padding: 2.25rem 0;
+  }
+}

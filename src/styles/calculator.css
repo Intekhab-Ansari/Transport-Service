@@ -1,0 +1,224 @@
+/* ==========================================================================
+   CLEAN FARE CALCULATOR & BOOKING MODAL
+   ========================================================================== */
+
+.calc-card-clean {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  color: var(--text-dark);
+}
+
+.calc-card-header-clean {
+  background-color: #0f141d;
+  padding: 1rem 1.25rem;
+  border-bottom: 2px solid var(--accent-orange);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calc-header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.calc-header-title svg {
+  color: var(--accent-orange);
+}
+
+.calc-body-clean {
+  padding: 1.25rem;
+}
+
+.calc-body-clean .form-label {
+  color: #1e293b;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.calc-body-clean .form-control {
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.875rem;
+}
+
+.calc-body-clean .form-control:focus {
+  border-color: var(--accent-orange);
+  background-color: #ffffff;
+}
+
+/* Distance Slider & Input */
+.distance-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.range-slider {
+  width: 100%;
+  accent-color: var(--accent-orange);
+  height: 6px;
+  border-radius: 3px;
+  background: #e2e8f0;
+  cursor: pointer;
+}
+
+.distance-badge {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: #f1f5f9;
+  color: var(--accent-orange);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid #cbd5e1;
+  min-width: 70px;
+  text-align: center;
+}
+
+/* Quick Route Preset Pills */
+.route-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+}
+
+.preset-pill {
+  font-size: 0.725rem;
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.preset-pill:hover {
+  border-color: var(--accent-orange);
+  color: var(--accent-orange);
+  background-color: #ffffff;
+}
+
+/* Helpers Counter */
+.helpers-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+}
+
+.helpers-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.helpers-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.helpers-sub {
+  font-size: 0.7rem;
+  color: #64748b;
+}
+
+.counter-ctrls {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.counter-btn {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e2e8f0;
+  color: #0f172a;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.counter-btn:hover:not(:disabled) {
+  background-color: var(--accent-orange);
+  color: #ffffff;
+  border-color: var(--accent-orange);
+}
+
+.counter-val {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  min-width: 18px;
+  text-align: center;
+  color: #0f172a;
+}
+
+/* Receipt Box (Clean Light) */
+.fare-receipt-box-clean {
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.fare-row-clean {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.825rem;
+  margin-bottom: 0.3rem;
+  color: #475569;
+}
+
+.fare-row-clean.total-row-clean {
+  border-top: 1px solid #cbd5e1;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.total-amount-clean {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  color: var(--accent-orange);
+  line-height: 1;
+}
+
+.calc-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+@media (max-width: 500px) {
+  .calc-actions {
+    grid-template-columns: 1fr;
+  }
+}
