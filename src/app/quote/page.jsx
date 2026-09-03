@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { 
   Calculator, 
   Phone, 
@@ -10,16 +10,57 @@ import {
   ArrowRight,
   AlertCircle
 } from 'lucide-react';
-import { BUSINESS_CONFIG } from '../data/transportData';
-import FareCalculator from '../components/FareCalculator';
+import { BUSINESS_CONFIG } from '../../data/transportData';
+import FareCalculator from '../../components/FareCalculator';
 
-export default function QuotePage({ selectedFleetId }) {
-  const whatsappUrl = `https://wa.me/${BUSINESS_CONFIG.whatsappNumber}?text=${encodeURIComponent(
-    `Hello ${BUSINESS_CONFIG.brandName}, I need a customized freight/shifting quotation.`
-  )}`;
+export const metadata = {
+  title: 'Instant Freight & Tempo Fare Estimator | Mumbai, Pune & Pan-India',
+  description:
+    'Calculate live transport fares with itemized per-km tariffs, labor loading helpers, and transit insurance. Book Tata Ace, Bolero, 14ft to 32ft trucks with zero hidden fees.',
+  alternates: {
+    canonical: 'https://transport-service-six.vercel.app/quote',
+  },
+  openGraph: {
+    title: 'Instant Freight & Tempo Fare Estimator | Vanguard Roadways',
+    description:
+      'Transparent tariff calculator with zero surprise charges. Instant WhatsApp quote & callback booking.',
+    url: 'https://transport-service-six.vercel.app/quote',
+  },
+};
+
+async function CalculatorWrapper({ searchParams }) {
+  const params = await searchParams;
+  const selectedFleetId = params?.fleet || 'bolero-pickup';
+  return <FareCalculator defaultVehicleId={selectedFleetId} />;
+}
+
+export default function QuotePage({ searchParams }) {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://transport-service-six.vercel.app/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Fare Estimator',
+        item: 'https://transport-service-six.vercel.app/quote',
+      },
+    ],
+  };
 
   return (
     <div className="section-py">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <div className="container">
         <div className="section-header text-center">
           <span className="section-tag">TRANSPARENT TARIFF ESTIMATOR</span>
@@ -30,7 +71,9 @@ export default function QuotePage({ selectedFleetId }) {
         </div>
 
         <div style={{ maxWidth: '850px', margin: '0 auto' }}>
-          <FareCalculator defaultVehicleId={selectedFleetId || 'bolero-pickup'} />
+          <Suspense fallback={<div style={{ textAlign: 'center', padding: '3rem', color: '#94a3b8' }}>Loading tariff calculator...</div>}>
+            <CalculatorWrapper searchParams={searchParams} />
+          </Suspense>
 
           {/* Booking Terms Strip */}
           <div style={{

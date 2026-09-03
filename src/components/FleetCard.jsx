@@ -1,4 +1,8 @@
+'use client';
+
 import React, { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { 
   Truck, 
   CheckCircle2, 
@@ -123,14 +127,24 @@ export default function FleetCard({ onSelectVehicle }) {
               </span>
             </div>
 
-            <button
-              type="button"
-              className="btn btn-primary btn-sm"
-              onClick={() => onSelectVehicle && onSelectVehicle(activeVehicle.id)}
-            >
-              <span>Book {activeVehicle.name.split('(')[0]}</span>
-              <ArrowRight size={15} />
-            </button>
+            {onSelectVehicle ? (
+              <button
+                type="button"
+                className="btn btn-primary btn-sm"
+                onClick={() => onSelectVehicle(activeVehicle.id)}
+              >
+                <span>Book {activeVehicle.name.split('(')[0]}</span>
+                <ArrowRight size={15} />
+              </button>
+            ) : (
+              <Link
+                href={`/quote?fleet=${activeVehicle.id}`}
+                className="btn btn-primary btn-sm"
+              >
+                <span>Book {activeVehicle.name.split('(')[0]}</span>
+                <ArrowRight size={15} />
+              </Link>
+            )}
           </div>
         </div>
       </div>

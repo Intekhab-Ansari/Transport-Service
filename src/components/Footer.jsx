@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { 
   Truck, 
   Phone, 
@@ -11,21 +12,14 @@ import {
 } from 'lucide-react';
 import { BUSINESS_CONFIG } from '../data/transportData';
 
-export default function Footer({ setActivePage }) {
-  const handleNav = (pageId) => {
-    if (setActivePage) {
-      setActivePage(pageId);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
+export default function Footer() {
   return (
     <footer className="main-footer">
       <div className="container">
         <div className="footer-grid">
           {/* Col 1: Brand & Legacy */}
           <div>
-            <div className="brand-logo" style={{ marginBottom: '1.25rem' }}>
+            <Link href="/" className="brand-logo" style={{ marginBottom: '1.25rem', display: 'inline-flex' }}>
               <div className="logo-icon-box" style={{ width: '40px', height: '40px' }}>
                 <Truck size={22} />
               </div>
@@ -35,7 +29,7 @@ export default function Footer({ setActivePage }) {
                 </div>
                 <div className="logo-tagline">Est. {BUSINESS_CONFIG.establishedYear} • Direct Fleet</div>
               </div>
-            </div>
+            </Link>
 
             <p style={{ fontSize: '0.875rem', lineHeight: '1.6', marginBottom: '1.25rem' }}>
               Professional goods transport, local tempo rental (Tata Ace / Bolero), packers and movers, and full truckload (14ft to 32ft) highway logistics across Western India corridors.
@@ -52,39 +46,44 @@ export default function Footer({ setActivePage }) {
             <div className="footer-col-title">Quick Navigation</div>
             <ul className="footer-links">
               <li>
-                <a href="#home" onClick={(e) => { e.preventDefault(); handleNav('home'); }}>
+                <Link href="/">
                   Home Overview
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#services" onClick={(e) => { e.preventDefault(); handleNav('services'); }}>
+                <Link href="/services">
                   Our Transport Services
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#fleet" onClick={(e) => { e.preventDefault(); handleNav('fleet'); }}>
+                <Link href="/fleet">
                   Fleet Specifications
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#quote" onClick={(e) => { e.preventDefault(); handleNav('quote'); }}>
+                <Link href="/quote">
                   Instant Fare Estimator
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#tracking" onClick={(e) => { e.preventDefault(); handleNav('tracking'); }}>
+                <Link href="/tracking">
                   Live Consignment Tracking
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#careers" onClick={(e) => { e.preventDefault(); handleNav('careers'); }}>
+                <Link href="/about">
+                  About Vanguard Roadways
+                </Link>
+              </li>
+              <li>
+                <Link href="/careers">
                   Attach Vehicle / Driver Jobs
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#contact" onClick={(e) => { e.preventDefault(); handleNav('contact'); }}>
+                <Link href="/contact">
                   Yard Location & Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -93,12 +92,12 @@ export default function Footer({ setActivePage }) {
           <div>
             <div className="footer-col-title">Services Offered</div>
             <ul className="footer-links">
-              <li><a href="#services" onClick={(e) => { e.preventDefault(); handleNav('services'); }}>Local Tempo Hire (Tata Ace)</a></li>
-              <li><a href="#services" onClick={(e) => { e.preventDefault(); handleNav('services'); }}>House & Office Shifting</a></li>
-              <li><a href="#services" onClick={(e) => { e.preventDefault(); handleNav('services'); }}>Intercity Full Truckload (FTL)</a></li>
-              <li><a href="#services" onClick={(e) => { e.preventDefault(); handleNav('services'); }}>B2B Dedicated Fleet Contract</a></li>
-              <li><a href="#services" onClick={(e) => { e.preventDefault(); handleNav('services'); }}>Heavy Industrial Machinery Freight</a></li>
-              <li><a href="#services" onClick={(e) => { e.preventDefault(); handleNav('services'); }}>Express Same-Day Parcel Runs</a></li>
+              <li><Link href="/services">Local Tempo Hire (Tata Ace)</Link></li>
+              <li><Link href="/services">House & Office Shifting</Link></li>
+              <li><Link href="/services">Intercity Full Truckload (FTL)</Link></li>
+              <li><Link href="/services">B2B Dedicated Fleet Contract</Link></li>
+              <li><Link href="/services">Heavy Industrial Machinery Freight</Link></li>
+              <li><Link href="/services">Express Same-Day Parcel Runs</Link></li>
             </ul>
           </div>
 

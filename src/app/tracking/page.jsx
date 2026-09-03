@@ -9,12 +9,51 @@ import {
   Phone,
   HelpCircle
 } from 'lucide-react';
-import TrackingWidget from '../components/TrackingWidget';
-import { BUSINESS_CONFIG } from '../data/transportData';
+import TrackingWidget from '../../components/TrackingWidget';
+import { BUSINESS_CONFIG } from '../../data/transportData';
+
+export const metadata = {
+  title: 'Live Consignment & Fleet GPS Tracking | Vanguard Roadways',
+  description:
+    'Track your transport consignment in real-time. Enter LR or Docket number for live GPS telemetry, driver contact, transit status checkpoints, and electronic proof of delivery.',
+  alternates: {
+    canonical: 'https://transport-service-six.vercel.app/tracking',
+  },
+  openGraph: {
+    title: 'Live Consignment & Fleet GPS Tracking | Vanguard Roadways',
+    description:
+      'Real-time GPS tracking for active shipments across Mumbai, Pune, and Pan-India highways.',
+    url: 'https://transport-service-six.vercel.app/tracking',
+  },
+};
 
 export default function TrackingPage() {
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://transport-service-six.vercel.app/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Live Consignment Tracking',
+        item: 'https://transport-service-six.vercel.app/tracking',
+      },
+    ],
+  };
+
   return (
     <div className="section-py">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <div className="container">
         <div className="section-header text-center">
           <span className="section-tag">LIVE FLEET GPS INTELLIGENCE</span>

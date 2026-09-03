@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Link from 'next/link';
 import { 
   Truck, 
   Phone, 
@@ -22,27 +23,56 @@ import { FLEET_VEHICLES } from '../data/fleetData';
 import FareCalculator from '../components/FareCalculator';
 import FleetCard from '../components/FleetCard';
 import Testimonials from '../components/Testimonials';
+import FaqAccordion from '../components/FaqAccordion';
 
-export default function HomePage({ setActivePage, setSelectedFleetId }) {
-  const [openFaqIdx, setOpenFaqIdx] = useState(0);
+export const metadata = {
+  title: 'Vanguard Roadways & Tempo Logistics | Mumbai & All India Truck Transport | Tata Ace Hire & Shifting',
+  description:
+    'Top-rated goods transport and tempo hire in Mumbai, Navi Mumbai, Thane & All-India. Book Tata Ace, Bolero Pickup, 14ft to 32ft container trucks. Local house shifting, Bhiwandi warehouse logistics, JNPT port freight & intercity FTL with GPS live tracking.',
+  alternates: {
+    canonical: 'https://transport-service-six.vercel.app/',
+  },
+  openGraph: {
+    title: 'Vanguard Logistics | Direct Tempo & Truck Transport in Mumbai & Pan-India',
+    description:
+      'Direct fleet tempo & truck transport across Mumbai (Andheri, BKC, Vashi, Thane, Bhiwandi) & Pan-India. Tata Ace, Bolero & 32ft FTL with instant fares & live GPS.',
+    url: 'https://transport-service-six.vercel.app/',
+  },
+};
 
-  const handleSelectFleetForBooking = (vehicleId) => {
-    if (setSelectedFleetId) setSelectedFleetId(vehicleId);
-    if (setActivePage) setActivePage('quote');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
+export default function HomePage() {
   const whatsappUrl = `https://wa.me/${BUSINESS_CONFIG.whatsappNumber}?text=${encodeURIComponent(
     `Hello ${BUSINESS_CONFIG.brandName}, I want to book a tempo/truck. Please share rates.`
   )}`;
 
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: BUSINESS_CONFIG.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.a,
+      },
+    })),
+  };
+
   return (
     <div className="home-wrapper">
-      {/* 1. REBUILT HERO: Full-Bleed Road Photography with Dark Scrim & Docked Fare Bar */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
+      {/* 1. HERO SECTION */}
       <section className="hero-section-photo">
-        <div className="hero-photo-bg" style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1920&q=80')`
-        }}>
+        <div 
+          className="hero-photo-bg" 
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1920&q=80')`
+          }}
+        >
           <div className="hero-photo-scrim"></div>
         </div>
 
@@ -91,7 +121,7 @@ export default function HomePage({ setActivePage, setSelectedFleetId }) {
         </div>
       </section>
 
-      {/* 2. TRUST STATS STRIP (Dark Asphalt) */}
+      {/* 2. TRUST STATS STRIP */}
       <section className="trust-strip">
         <div className="container">
           <div className="trust-grid">
@@ -106,7 +136,7 @@ export default function HomePage({ setActivePage, setSelectedFleetId }) {
         </div>
       </section>
 
-      {/* 3. SERVICES SECTION: CRISP LIGHT BACKGROUND (Breaks dark monotony) */}
+      {/* 3. SERVICES OVERVIEW */}
       <section className="section-py section-light" id="services-overview">
         <div className="container">
           <div className="section-header">
@@ -145,14 +175,13 @@ export default function HomePage({ setActivePage, setSelectedFleetId }) {
 
                 <div className="card-light-footer">
                   <span className="card-light-price">{svc.priceGuide.split('•')[0]}</span>
-                  <button
-                    type="button"
+                  <Link
+                    href="/services"
                     className="card-light-btn"
-                    onClick={() => setActivePage('services')}
                   >
                     <span>Details</span>
                     <ChevronRight size={15} />
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -160,7 +189,7 @@ export default function HomePage({ setActivePage, setSelectedFleetId }) {
         </div>
       </section>
 
-      {/* 4. FLEET SECTION: REAL VEHICLE PHOTOGRAPHY (Dark Asphalt Section) */}
+      {/* 4. FLEET SECTION */}
       <section className="section-py section-dark" id="fleet-section">
         <div className="container">
           <div className="section-header">
@@ -171,183 +200,186 @@ export default function HomePage({ setActivePage, setSelectedFleetId }) {
             </p>
           </div>
 
-          <FleetCard onSelectVehicle={handleSelectFleetForBooking} />
+          <FleetCard />
         </div>
       </section>
 
-      {/* 5. WHY CHOOSE US: SIDE-BY-SIDE PHOTO + COMPARISON TABLE (Crisp Light Background) */}
+      {/* 5. WHY CHOOSE US */}
       <section className="section-py section-light">
         <div className="container">
-          <div className="section-header text-center">
-            <span className="section-tag-light">THE FLEET OWNER DIFFERENCE</span>
-            <h2 className="section-title-light">DIRECT FLEET OPERATOR VS AGGREGATOR APPS</h2>
-            <p className="section-subtitle-light">
-              Booking apps take commission cuts and assign unknown third-party drivers who frequently cancel. We own our trucks, train our drivers, and guarantee on-time arrival.
-            </p>
-          </div>
-
-          <div className="comparison-wrapper-grid">
-            {/* Left: Real Loading & Driver Photo */}
-            <div className="operational-photo-card">
-              <img 
-                src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=800&q=80" 
-                alt="Vanguard loading crew in action"
-                className="operational-img"
-              />
-              <div className="operational-caption">
-                <div style={{ fontWeight: 'bold', color: '#ffffff' }}>Verified Loading Crew & Direct Drivers</div>
-                <div style={{ fontSize: '0.8rem', color: 'var(--accent-yellow)' }}>Trained hamal labor • Zero transshipment loss</div>
-                <span className="replace-tag" style={{ marginTop: '4px', display: 'inline-block' }}>[REPLACE: Real photo of loading crew at site]</span>
+          <div className="why-us-grid">
+            <div className="why-us-visual">
+              <div className="visual-image-wrapper">
+                <img 
+                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1000&q=80" 
+                  alt="Vanguard Logistics Warehousing & Direct Commercial Fleet"
+                  className="why-us-img"
+                  loading="lazy"
+                />
+                <div className="visual-tag-card">
+                  <ShieldCheck size={28} color="var(--accent-green)" />
+                  <div>
+                    <div style={{ fontWeight: '800', fontSize: '1.1rem', color: '#0f172a' }}>100% Direct Fleet</div>
+                    <div style={{ fontSize: '0.78rem', color: '#64748b' }}>Zero third-party driver commissions</div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right: Clean Comparison Table */}
-            <div className="comparison-container-light">
-              <table className="comparison-table-light">
-                <thead>
-                  <tr>
-                    <th>Commitment</th>
-                    <th className="highlight-th">★ Vanguard Direct Fleet</th>
-                    <th>App Aggregators</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Dispatch Reliability</strong></td>
-                    <td className="highlight-td">✔ 100% Guaranteed dispatch from yard</td>
-                    <td className="bad-td">✖ High cancellation during peak hours</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Pricing Structure</strong></td>
-                    <td className="highlight-td">✔ Fixed upfront quote. Zero rain surge</td>
-                    <td className="bad-td">✖ Dynamic surge multiplier (up to 2.5x)</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Driver & Crew</strong></td>
-                    <td className="highlight-td">✔ Verified full-time drivers with police records</td>
-                    <td className="bad-td">✖ Unknown gig contractors</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Cargo Safety</strong></td>
-                    <td className="highlight-td">✔ Heavy tarpaulins + ₹50L Transit Policy</td>
-                    <td className="bad-td">✖ Excludes commercial goods</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Direct Line</strong></td>
-                    <td className="highlight-td">✔ 24/7 Phone call to Yard Manager</td>
-                    <td className="bad-td">✖ Automated chatbot with no call access</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div className="why-us-info">
+              <span className="section-tag-light">DIRECT FLEET ADVANTAGE</span>
+              <h2 className="section-title-light">WHY MUMBAI & PUNE BUSINESSES TRUST VANGUARD</h2>
+              <p className="section-subtitle-light" style={{ marginBottom: '1.75rem' }}>
+                App aggregators act as middleman brokers who auction your booking to whoever is nearby. We are asset owners who maintain our own fleet, employ vetted drivers, and guarantee pickup.
+              </p>
+
+              <div className="comparison-table-wrap">
+                <table className="comparison-table">
+                  <thead>
+                    <tr>
+                      <th>Service Guarantee</th>
+                      <th className="th-vanguard">Vanguard Roadways</th>
+                      <th className="th-aggregator">Booking Apps / Brokers</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Fleet Control</td>
+                      <td className="td-highlight"><CheckCircle2 size={16} /> 65+ Company Owned</td>
+                      <td className="td-muted">Random unverified drivers</td>
+                    </tr>
+                    <tr>
+                      <td>Driver Cancellation</td>
+                      <td className="td-highlight"><CheckCircle2 size={16} /> 0% — Guaranteed Turnout</td>
+                      <td className="td-muted">Frequent last-minute cancels</td>
+                    </tr>
+                    <tr>
+                      <td>Fare Pricing</td>
+                      <td className="td-highlight"><CheckCircle2 size={16} /> Transparent Fixed Rates</td>
+                      <td className="td-muted">Surge pricing & hidden fees</td>
+                    </tr>
+                    <tr>
+                      <td>Billing & E-Way</td>
+                      <td className="td-highlight"><CheckCircle2 size={16} /> Valid GST & Digital E-Way</td>
+                      <td className="td-muted">Complicated corporate billing</td>
+                    </tr>
+                    <tr>
+                      <td>Support Desk</td>
+                      <td className="td-highlight"><CheckCircle2 size={16} /> 24/7 Yard Master Phone</td>
+                      <td className="td-muted">Chatbot ticket queues</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 6. HOW IT WORKS: ROAD-ROUTE TIMELINE (Dark Slate Section) */}
-      <section className="section-py section-asphalt">
+      {/* 6. HIGH-TRAFFIC INDUSTRIAL CORRIDORS */}
+      <section className="section-py section-dark">
         <div className="container">
-          <div className="section-header text-center">
-            <span className="section-tag">SEAMLESS 4-STEP DISPATCH</span>
-            <h2 className="section-title">HOW YOUR GOODS MOVE WITH VANGUARD</h2>
+          <div className="section-header">
+            <span className="section-tag">HIGH FREQUENCY HIGHWAY RUNS</span>
+            <h2 className="section-title">DAILY EXPRESS FREIGHT CORRIDORS</h2>
             <p className="section-subtitle">
-              Simple, transparent, and completely stress-free from the first phone call to final doorstep delivery.
+              Daily dedicated departures connecting Maharashtra, Gujarat, and South India logistics belts.
             </p>
           </div>
 
-          <div className="process-grid-compact">
-            <div className="process-card-compact">
-              <div className="process-num-compact">01</div>
-              <h3 className="process-title-compact">Book & Lock Fare</h3>
-              <p className="process-desc-compact">
-                Calculate fare online or WhatsApp us your route. We lock your vehicle with fixed pricing.
+          <div className="corridor-cards-grid">
+            <div className="corridor-card">
+              <div className="corridor-header">
+                <span className="corridor-badge">Daily Express Runs</span>
+                <span className="corridor-transit">3 - 5 Hours</span>
+              </div>
+              <h3 className="corridor-title">Mumbai ⇄ Pune Expressway</h3>
+              <p className="corridor-desc">
+                High-speed connectivity between APMC Vashi/Bhiwandi and Bhosari/Chakan MIDC industrial zones.
               </p>
+              <div className="corridor-details">
+                <div><strong>Capacity:</strong> Tata Ace to 32ft Multi-Axle</div>
+                <div><strong>Departures:</strong> Hourly day & night slots</div>
+              </div>
+              <Link href="/quote" className="corridor-btn">
+                <span>Check Corridor Tariff</span>
+                <ArrowRight size={14} />
+              </Link>
             </div>
 
-            <div className="process-card-compact">
-              <div className="process-num-compact">02</div>
-              <h3 className="process-title-compact">Arrival & Loading</h3>
-              <p className="process-desc-compact">
-                Vehicle arrives in 30-45 mins. Our hamal crew wraps and secures items with heavy ropes.
+            <div className="corridor-card">
+              <div className="corridor-header">
+                <span className="corridor-badge">Port & Cargo Express</span>
+                <span className="corridor-transit">Same-Day Port Clearance</span>
+              </div>
+              <h3 className="corridor-title">JNPT Nhava Sheva ⇄ Bhiwandi</h3>
+              <p className="corridor-desc">
+                Specialized container trailer and 19ft/24ft container transport from Nhava Sheva port to warehouse clusters.
               </p>
+              <div className="corridor-details">
+                <div><strong>Capacity:</strong> 20ft/40ft Port Containers & FTL</div>
+                <div><strong>Documentation:</strong> Custom clearance handling</div>
+              </div>
+              <Link href="/quote" className="corridor-btn">
+                <span>Check Port Rates</span>
+                <ArrowRight size={14} />
+              </Link>
             </div>
 
-            <div className="process-card-compact">
-              <div className="process-num-compact">03</div>
-              <h3 className="process-title-compact">Live GPS Transit</h3>
-              <p className="process-desc-compact">
-                Receive live tracking on WhatsApp. Monitor truck speed, toll checkpoints, and driver ETA.
+            <div className="corridor-card">
+              <div className="corridor-header">
+                <span className="corridor-badge">Interstate National Corridor</span>
+                <span className="corridor-transit">24 - 36 Hours</span>
+              </div>
+              <h3 className="corridor-title">Mumbai ⇄ Gujarat & Bangalore</h3>
+              <p className="corridor-desc">
+                Full Truckload (FTL) highway logistics connecting Mumbai/Navi Mumbai to Surat, Ahmedabad, and Bangalore.
               </p>
-            </div>
-
-            <div className="process-card-compact">
-              <div className="process-num-compact">04</div>
-              <h3 className="process-title-compact">Doorstep Delivery</h3>
-              <p className="process-desc-compact">
-                Safe unloading at destination. Inspect cargo, sign digital POD slip, and pay transparently.
-              </p>
+              <div className="corridor-details">
+                <div><strong>Capacity:</strong> 14ft, 19ft & 32ft HQ Containers</div>
+                <div><strong>Security:</strong> FastTag enabled, GPS tracked</div>
+              </div>
+              <Link href="/quote" className="corridor-btn">
+                <span>Check FTL Pricing</span>
+                <ArrowRight size={14} />
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 7. ACTIVE HIGHWAY CORRIDORS & TESTIMONIALS (Warm Light Section) */}
+      {/* 7. COVERAGE HUBS & REVIEWS */}
       <section className="section-py section-light">
         <div className="container">
           <div className="section-header">
-            <span className="section-tag-light">DAILY ACTIVE ROUTES</span>
-            <h2 className="section-title-light">MAJOR COMMERCIAL CORRIDORS SERVED</h2>
+            <span className="section-tag-light">HYPERLOCAL PRESENCE</span>
+            <h2 className="section-title-light">MUMBAI, MMR & PUNE DISPATCH HUBS</h2>
             <p className="section-subtitle-light">
-              Daily round-the-clock runs across key manufacturing and retail corridors with guaranteed return availability.
-            </p>
-          </div>
-
-          <div className="corridor-grid-light" style={{ marginBottom: '3rem' }}>
-            {BUSINESS_CONFIG.corridors.map((c, idx) => (
-              <div key={idx} className="corridor-card-light">
-                <div className="corridor-route-light">
-                  <span>{c.from}</span>
-                  <ArrowRight size={16} color="var(--accent-orange)" />
-                  <span>{c.to}</span>
-                </div>
-                <div className="corridor-meta-light">
-                  <span>Avg: <strong>{c.time}</strong></span>
-                  <span className="corridor-freq">{c.frequency}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Mumbai & MMR Local Service Hubs SEO Section */}
-          <div className="section-header" style={{ marginTop: '3.5rem' }}>
-            <span className="section-tag-light">MUMBAI & MMR LOCAL COVERAGE</span>
-            <h2 className="section-title-light">LOCAL TEMPO & TRUCK HUBS IN MUMBAI</h2>
-            <p className="section-subtitle-light">
-              We operate dedicated parking yards and verified tempo dispatch desks across all major commercial & residential zones in Mumbai Metropolitan Region (MMR).
+              With yards stationed near major highway arteries, our vehicles reach your loading dock within 30 to 45 minutes.
             </p>
           </div>
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
             gap: '1.25rem',
-            marginBottom: '3.5rem'
+            marginBottom: '3rem'
           }}>
-            {BUSINESS_CONFIG.mumbaiServiceZones && BUSINESS_CONFIG.mumbaiServiceZones.map((zone, idx) => (
+            {(BUSINESS_CONFIG.mumbaiServiceZones || []).map((zone, idx) => (
               <div key={idx} style={{
                 background: '#ffffff',
                 border: '1px solid #e2e8f0',
                 borderRadius: '8px',
                 padding: '1.25rem',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
+                boxShadow: '0 2px 4px rgba(0,0,0,0.04)'
               }}>
                 <div style={{
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
-                  fontSize: '1rem',
                   fontWeight: '700',
-                  color: 'var(--bg-steel-black)',
+                  fontSize: '1rem',
+                  color: '#0f172a',
                   marginBottom: '0.85rem'
                 }}>
                   <MapPin size={18} color="var(--accent-orange)" />
@@ -380,7 +412,7 @@ export default function HomePage({ setActivePage, setSelectedFleetId }) {
         </div>
       </section>
 
-      {/* 8. FAQ ACCORDION (Dark Section) */}
+      {/* 8. FAQ ACCORDION */}
       <section className="section-py section-dark">
         <div className="container">
           <div className="section-header text-center">
@@ -391,33 +423,7 @@ export default function HomePage({ setActivePage, setSelectedFleetId }) {
             </p>
           </div>
 
-          <div className="faq-list">
-            {BUSINESS_CONFIG.faqs.map((faq, idx) => (
-              <div key={idx} className="faq-item">
-                <button
-                  type="button"
-                  className="faq-question"
-                  onClick={() => setOpenFaqIdx(openFaqIdx === idx ? -1 : idx)}
-                >
-                  <span>{faq.q}</span>
-                  <ChevronRight 
-                    size={18} 
-                    color="var(--accent-orange)"
-                    style={{
-                      transform: openFaqIdx === idx ? 'rotate(90deg)' : 'rotate(0deg)',
-                      transition: 'transform 0.2s ease'
-                    }}
-                  />
-                </button>
-
-                {openFaqIdx === idx && (
-                  <div className="faq-answer">
-                    {faq.a}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+          <FaqAccordion />
         </div>
       </section>
 

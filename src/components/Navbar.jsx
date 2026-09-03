@@ -1,4 +1,8 @@
+'use client';
+
 import React, { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { 
   Phone, 
   MessageCircle, 
@@ -9,23 +13,22 @@ import {
 } from 'lucide-react';
 import { BUSINESS_CONFIG } from '../data/transportData';
 
-export default function Navbar({ activePage, setActivePage }) {
+export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
-  // Short single-word labels, max 6 items to prevent wrapping
   const navLinks = [
-    { id: 'home', label: 'Home' },
-    { id: 'services', label: 'Services' },
-    { id: 'fleet', label: 'Fleet' },
-    { id: 'quote', label: 'Fares' },
-    { id: 'tracking', label: 'Track' },
-    { id: 'contact', label: 'Contact' }
+    { href: '/', label: 'Home' },
+    { href: '/services', label: 'Services' },
+    { href: '/fleet', label: 'Fleet' },
+    { href: '/quote', label: 'Fares' },
+    { href: '/tracking', label: 'Track' },
+    { href: '/contact', label: 'Contact' }
   ];
 
-  const handleNavClick = (pageId) => {
-    setActivePage(pageId);
-    setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const isActive = (href) => {
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
   };
 
   const whatsappUrl = `https://wa.me/${BUSINESS_CONFIG.whatsappNumber}?text=${encodeURIComponent(
@@ -34,10 +37,10 @@ export default function Navbar({ activePage, setActivePage }) {
 
   return (
     <>
-      {/* 1. Thin Clean Utility Top Bar (No gimmick badges, right-aligned) */}
+      {/* 1. Thin Clean Utility Top Bar */}
       <div className="top-bar-clean">
         <div className="container top-bar-clean-inner">
-          <span className="top-yard-note">Fleet Yard: Nigdi / Bhosari MIDC, Pune</span>
+          <span className="top-yard-note">Fleet Yard: Nigdi / Bhosari MIDC, Pune & APMC Vashi, Navi Mumbai</span>
           <div className="top-links-right">
             <span>24/7 Dispatch Hotline:</span>
             <a href={`tel:${BUSINESS_CONFIG.phonePrimary.replace(/\s+/g, '')}`} className="top-phone-link">
@@ -58,14 +61,13 @@ export default function Navbar({ activePage, setActivePage }) {
         </div>
       </div>
 
-      {/* 2. Main Navigation Header (Compact, 60px fixed height, no wrapping) */}
+      {/* 2. Main Navigation Header */}
       <header className="main-header">
         <div className="container nav-container">
           {/* Logo */}
-          <a 
-            href="#home" 
+          <Link 
+            href="/" 
             className="brand-logo"
-            onClick={(e) => { e.preventDefault(); handleNavClick('home'); }}
           >
             <div className="logo-icon-box">
               <Truck size={22} strokeWidth={2.4} />
@@ -78,19 +80,19 @@ export default function Navbar({ activePage, setActivePage }) {
                 Direct Fleet • Tempo & Trucks
               </div>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Nav Items */}
-          <nav className="nav-desktop">
+          <nav className="nav-desktop" aria-label="Main Navigation">
             <ul className="nav-menu">
               {navLinks.map((link) => (
-                <li key={link.id}>
-                  <button
-                    className={`nav-link ${activePage === link.id ? 'active' : ''}`}
-                    onClick={() => handleNavClick(link.id)}
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={`nav-link ${isActive(link.href) ? 'active' : ''}`}
                   >
                     {link.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -98,12 +100,12 @@ export default function Navbar({ activePage, setActivePage }) {
 
           {/* Right Nav CTA Action */}
           <div className="nav-actions">
-            <button
+            <Link
+              href="/quote"
               className="btn btn-primary btn-sm nav-cta-btn"
-              onClick={() => handleNavClick('quote')}
             >
               Instant Fare
-            </button>
+            </Link>
 
             {/* Mobile Hamburger Toggle */}
             <button
@@ -139,34 +141,37 @@ export default function Navbar({ activePage, setActivePage }) {
 
         <ul className="mobile-nav-list">
           {navLinks.map((link) => (
-            <li key={link.id}>
-              <button
-                className={`mobile-nav-link ${activePage === link.id ? 'active' : ''}`}
-                onClick={() => handleNavClick(link.id)}
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className={`mobile-nav-link ${isActive(link.href) ? 'active' : ''}`}
+                onClick={() => setMobileMenuOpen(false)}
               >
                 <span>{link.label}</span>
                 <ChevronRight size={16} color="var(--accent-orange)" />
-              </button>
+              </Link>
             </li>
           ))}
           {/* Secondary Mobile links */}
           <li>
-            <button
-              className={`mobile-nav-link ${activePage === 'about' ? 'active' : ''}`}
-              onClick={() => handleNavClick('about')}
+            <Link
+              href="/about"
+              className={`mobile-nav-link ${isActive('/about') ? 'active' : ''}`}
+              onClick={() => setMobileMenuOpen(false)}
             >
               <span>About Us</span>
               <ChevronRight size={16} color="var(--accent-orange)" />
-            </button>
+            </Link>
           </li>
           <li>
-            <button
-              className={`mobile-nav-link ${activePage === 'careers' ? 'active' : ''}`}
-              onClick={() => handleNavClick('careers')}
+            <Link
+              href="/careers"
+              className={`mobile-nav-link ${isActive('/careers') ? 'active' : ''}`}
+              onClick={() => setMobileMenuOpen(false)}
             >
               <span>Join as Driver</span>
               <ChevronRight size={16} color="var(--accent-orange)" />
-            </button>
+            </Link>
           </li>
         </ul>
 
